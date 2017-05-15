@@ -12,7 +12,7 @@ while true; do
 #      echo "$MAC $SIGNAL"
       if ! find /tmp | grep "angry_wifi_client_$MAC" > /dev/null; then
         date ; logger -s -t angry_wifi "Low signal client $MAC ($SIGNAL) disconnect."
-	ubus call hostapd.wlan0 del_client "{'addr':'$MAC', 'reason':5, 'deauth':false, 'ban_time':0}"
+	ubus call hostapd.wlan0 del_client "{'addr':'$MAC', 'reason':5, 'deauth':true, 'ban_time':0}"
 
 	# Add to do-not-disconnect list                                                                                                                                           
         touch "/tmp/angry_wifi_client_${MAC}_$(date +%s)"
