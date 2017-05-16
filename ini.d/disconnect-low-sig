@@ -1,0 +1,17 @@
+#!/bin/sh /etc/rc.common
+
+START=90
+STOP=95
+
+boot() {
+  ((/root/disconnect-low.sh)&)&
+}
+
+start(){
+  ((/root/disconnect-low.sh)&)&
+}
+
+stop(){
+  kill -9 $(ps | grep disconnect-low.sh | grep -v grep | awk '{print $1}') 
+
+}
